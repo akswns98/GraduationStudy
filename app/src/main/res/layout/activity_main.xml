@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical"
+
     >
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawer_layout"
+        android:orientation="vertical"
+        >
+
 
 
 <ScrollView
@@ -20,6 +27,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -61,14 +69,21 @@
             android:text="새로 고침"
             android:textSize="12dp"
             />
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <ImageButton
             android:id="@+id/pm"
-            android:layout_width="205dp"
-            android:layout_height="200dp"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:src="@drawable/pm"
-
             />
 
         <TextView
@@ -76,11 +91,15 @@
             android:layout_height="wrap_content"
             android:text="미세먼지값"
             android:layout_marginLeft="65dp"/>
-
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
         <ImageButton
             android:id="@+id/temp"
-            android:layout_width="205dp"
-            android:layout_height="200dp"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:src="@drawable/temphumi"
 
@@ -91,10 +110,34 @@
             android:layout_height="wrap_content"
             android:text="온 습도값"
             android:layout_marginLeft="65dp"/>
+</LinearLayout>
+    </LinearLayout>
 
 
     </LinearLayout>
 </ScrollView>
+
     <include layout="@layout/activity_menu"/>
 
+
+
 </androidx.drawerlayout.widget.DrawerLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"></FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#0E1850"
+        app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#f6d170"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_option"
+        />
+
+
+</RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.testversion;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+    Setting setting;  //세팅버튼 프래그먼트
+
 
     private DrawerLayout drawerLayout;
     private View drawerView;
@@ -37,9 +43,12 @@ public class MainActivity extends AppCompatActivity {
     TextView tempm;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         //main에 파싱
         tempm=findViewById(R.id.tempm);
@@ -56,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         temp = findViewById(R.id.temp);
         pmbu=findViewById(R.id.pmbu);
         hubu=findViewById(R.id.hubu) ;
+
 
         pm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,8 +107,29 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
+
+
         });
-        //파싱관련 코드
+        //프래그먼트 관련 코드
+        setting = new Setting();
+
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, setting).commit();
+        NavigationBarView bottom_menu = findViewById(R.id.bottom_menu);
+        bottom_menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.menu1:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, setting).commit();
+                        return true;
+
+                }
+                return false;
+            }
+
+        });
+
 
 
 
